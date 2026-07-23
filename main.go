@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 	"sort"
+	"strconv"
 )
 
 type Commit struct {
@@ -15,6 +16,12 @@ type Commit struct {
 	Message string
 
 }
+
+type fileStats struct {
+	name string
+	churn int
+}
+
 
 func logger(Output string) []Commit{
 	lines := strings.Split(strings.TrimSpace(Output), "\n")
@@ -106,6 +113,44 @@ func bucket(Commit []Commit) {
 	fmt.Println("longest Streak:", longestStreak, "days")
 }
 
+func churn(Output string) {
+
+fileChurn := make(map[string]int)
+lines := strings.Split((Output), "\n")
+
+	for _, line := range lines {
+
+		if line == "" || strings.HasPrefix(line, "COMMIT:") {
+			continue
+		}
+
+		fields := strings.Split(line, "\t")
+		if len(fields) != 3 {
+			continue 
+		}
+	
+		added, err1 := strconv.Atoi(fields[0])
+		removed, err2 := strconv.Atoi(fields[1])
+		if err1 != nil || err2 != nil {
+			continue
+		}
+
+		fileName := fields[2]
+		fileChurn[fileName] += added + removed
+	}
+var stats []fileStats
+	for name, churn := range fileChurn {
+		stats = append(stats,fileStats{name,churn})
+	}
+
+	sort.Slice(stats, func(i, j int) bool {
+	return stats[i].churn > stats[j].churn
+	})
+
+	for i:=0; i<5 && i<len(stats); i++ {
+	fmt.Printf("%d. %s (%d lines changed)\n", i+1, stats[i].name, stats[i].churn)
+	}
+}
 
 func main() {
 
@@ -118,5 +163,14 @@ func main() {
 	}
 
 	bucket(logger(string(output)))
+
+	cmd1 := exec.Command("git", "log", "--numstat", "--pretty=format:COMMIT:%H")
+	output1, err1 := cmd1.Output()
+	if err1 != nil {
+	fmt.Println("Error running numstat")
+	return
+	}
+	churn(string(output1))
+
 }
 
