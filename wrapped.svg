@@ -1,0 +1,8 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#1a1a2e"/>
+  <text x="20" y="40" font-size="20" fill="white">Your Git Wrapped</text>
+  <text x="20" y="80" font-size="14" fill="#aaa">Total commits: 4</text>
+  <text x="20" y="110" font-size="14" fill="#aaa">Busiest hour: 14:00</text>
+  <text x="20" y="140" font-size="14" fill="#aaa">Longest streak: 2 days</text>
+  <text x="20" y="170" font-size="14" fill="#aaa">Most-changed file: main.go (188 lines)</text>
+</svg>
