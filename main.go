@@ -11,19 +11,26 @@ import (
 	"os"
 )
 
-const svgTemplate = `<svg width="400" height="350" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="350" fill="#1a1a2e"/>
+const svgTemplate = `<svg width="400" height="450" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="400" height="450" fill="#1a1a2e" rx="12"/>
+
   <text x="20" y="30" font-size="20" fill="white">Your Git Wrapped</text>
+  <rect x="20" y="38" width="60" height="3" fill="#e94560" rx="1.5"/>
 
   {{range .Bars}}
   <rect x="{{.X}}" y="{{sub 250 .Height}}" width="10" height="{{.Height}}" fill="#e94560"/>
+  {{if eq (mod .Hour 3) 0}}
+  <text x="{{.X}}" y="265" font-size="9" fill="#666">{{.Hour}}</text>
+  {{end}}
   {{end}}
 
   <line x1="20" y1="250" x2="380" y2="250" stroke="#444" stroke-width="1"/>
 
-  <text x="20" y="280" font-size="14" fill="#aaa">Total commits: {{.TotalCommits}}</text>
-  <text x="20" y="300" font-size="14" fill="#aaa">Busiest hour: {{.BusiestHour}}:00</text>
-  <text x="20" y="320" font-size="14" fill="#aaa">Busiest day: {{.BusiestDay}}</text>
+  <text x="20" y="290" font-size="14" fill="#888">Total commits: <tspan fill="#e94560" font-weight="bold">{{.TotalCommits}}</tspan></text>
+  <text x="20" y="315" font-size="14" fill="#888">Busiest hour: <tspan fill="#e94560" font-weight="bold">{{.BusiestHour}}:00</tspan></text>
+  <text x="20" y="340" font-size="14" fill="#888">Busiest day: <tspan fill="#e94560" font-weight="bold">{{.BusiestDay}}</tspan></text>
+  <text x="20" y="365" font-size="14" fill="#888">Longest streak: <tspan fill="#e94560" font-weight="bold">{{.LongestStreak}}</tspan> days</text>
+  <text x="20" y="390" font-size="14" fill="#888">Most-changed file: <tspan fill="#e94560" font-weight="bold">{{.TopFile}}</tspan> ({{.TopFileChurn}} lines)</text>
 </svg>`
 
 
@@ -252,6 +259,7 @@ func main() {
 
 	funcMap := template.FuncMap{
 		"sub": func(a,b int) int { return a - b },
+		"mod": func(a,b int) int { return a % b },
 	}
 
 	tmpl, err := template.New("card").Funcs(funcMap).Parse(svgTemplate)
