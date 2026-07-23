@@ -1,8 +1,60 @@
-<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="300" fill="#1a1a2e"/>
-  <text x="20" y="40" font-size="20" fill="white">Your Git Wrapped</text>
-  <text x="20" y="80" font-size="14" fill="#aaa">Total commits: 4</text>
-  <text x="20" y="110" font-size="14" fill="#aaa">Busiest hour: 14:00</text>
-  <text x="20" y="140" font-size="14" fill="#aaa">Longest streak: 2 days</text>
-  <text x="20" y="170" font-size="14" fill="#aaa">Most-changed file: main.go (188 lines)</text>
+<svg width="400" height="350" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="350" fill="#1a1a2e"/>
+  <text x="20" y="30" font-size="20" fill="white">Your Git Wrapped</text>
+
+  
+  <rect x="20" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="35" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="50" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="65" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="80" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="95" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="110" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="125" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="140" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="155" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="170" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="185" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="200" y="200" width="10" height="50" fill="#e94560"/>
+  
+  <rect x="215" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="230" y="150" width="10" height="100" fill="#e94560"/>
+  
+  <rect x="245" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="260" y="200" width="10" height="50" fill="#e94560"/>
+  
+  <rect x="275" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="290" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="305" y="200" width="10" height="50" fill="#e94560"/>
+  
+  <rect x="320" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="335" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="350" y="250" width="10" height="0" fill="#e94560"/>
+  
+  <rect x="365" y="250" width="10" height="0" fill="#e94560"/>
+  
+
+  <line x1="20" y1="250" x2="380" y2="250" stroke="#444" stroke-width="1"/>
+
+  <text x="20" y="280" font-size="14" fill="#aaa">Total commits: 5</text>
+  <text x="20" y="300" font-size="14" fill="#aaa">Busiest hour: 14:00</text>
+  <text x="20" y="320" font-size="14" fill="#aaa">Busiest day: Wednesday</text>
 </svg>

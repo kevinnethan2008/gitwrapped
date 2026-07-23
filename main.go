@@ -11,13 +11,19 @@ import (
 	"os"
 )
 
-const svgTemplate = `<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="300" fill="#1a1a2e"/>
-  <text x="20" y="40" font-size="20" fill="white">Your Git Wrapped</text>
-  <text x="20" y="80" font-size="14" fill="#aaa">Total commits: {{.TotalCommits}}</text>
-  <text x="20" y="110" font-size="14" fill="#aaa">Busiest hour: {{.BusiestHour}}:00</text>
-  <text x="20" y="140" font-size="14" fill="#aaa">Longest streak: {{.LongestStreak}} days</text>
-  <text x="20" y="170" font-size="14" fill="#aaa">Most-changed file: {{.TopFile}} ({{.TopFileChurn}} lines)</text>
+const svgTemplate = `<svg width="400" height="350" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="350" fill="#1a1a2e"/>
+  <text x="20" y="30" font-size="20" fill="white">Your Git Wrapped</text>
+
+  {{range .Bars}}
+  <rect x="{{.X}}" y="{{sub 250 .Height}}" width="10" height="{{.Height}}" fill="#e94560"/>
+  {{end}}
+
+  <line x1="20" y1="250" x2="380" y2="250" stroke="#444" stroke-width="1"/>
+
+  <text x="20" y="280" font-size="14" fill="#aaa">Total commits: {{.TotalCommits}}</text>
+  <text x="20" y="300" font-size="14" fill="#aaa">Busiest hour: {{.BusiestHour}}:00</text>
+  <text x="20" y="320" font-size="14" fill="#aaa">Busiest day: {{.BusiestDay}}</text>
 </svg>`
 
 
@@ -37,9 +43,18 @@ type fileStats struct {
 type cardData struct {
 	TotalCommits int
 	BusiestHour int
+	BusiestDay string
 	LongestStreak int
 	TopFile string
 	TopFileChurn int
+	Bars []HourBar
+}
+
+type HourBar struct {
+	Hour int
+	Count int
+	Height int
+	X int
 }
 
 
@@ -77,7 +92,7 @@ func logger(Output string) []Commit{
 	return commits
 }
 
-func bucket(Commit []Commit) (int,int) {
+func bucket(Commit []Commit) (int,int,string,[]HourBar) {
 
 	hourCount := make(map[int]int)
 	weekdayCounts := make(map[time.Weekday]int)
@@ -139,7 +154,30 @@ func bucket(Commit []Commit) (int,int) {
 		BusiestHour = hour
 		}
 	}
-	return longestStreak, BusiestHour
+
+	busiestDay := time.Sunday
+	maxDayCount := 0
+	for day, count := range weekdayCounts {
+	if count > maxDayCount {
+			maxDayCount = count
+			busiestDay = day
+		}
+	}
+	var bars []HourBar
+	for hour :=0; hour<24; hour++ {
+		count := hourCount[hour]
+		height := 0
+		if maxCount > 0 {
+			height = int(float64(count) / float64(maxCount) * 100 )
+		}
+		bars = append(bars, HourBar {
+			Hour: hour,
+			Count: count,
+			Height: height,
+			X: 20 + hour*15,
+		})
+	}
+	return longestStreak, BusiestHour, busiestDay.String(), bars
 }
 
 func churn(Output string) (string,int) {
@@ -192,7 +230,7 @@ func main() {
 	return
 	}
 
-	longestStreak,busiestHour := bucket(logger(string(output)))
+	longestStreak,busiestHour,busiestDay,bars := bucket(logger(string(output)))
 
 	cmd1 := exec.Command("git", "log", "--numstat", "--pretty=format:COMMIT:%H")
 	output1, err1 := cmd1.Output()
@@ -205,12 +243,18 @@ func main() {
 	data := cardData {
 		TotalCommits: len(logger(string(output))),
 		BusiestHour: busiestHour,
+		BusiestDay: busiestDay,
 		LongestStreak: longestStreak,
 		TopFile: name,
 		TopFileChurn: churn,
+		Bars: bars,
 	}
 
-	tmpl, err := template.New("card").Parse(svgTemplate)
+	funcMap := template.FuncMap{
+		"sub": func(a,b int) int { return a - b },
+	}
+
+	tmpl, err := template.New("card").Funcs(funcMap).Parse(svgTemplate)
 	if err != nil {
 	fmt.Println("Template errror:",err)
 	return
