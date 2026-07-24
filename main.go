@@ -68,6 +68,7 @@ type cardData struct {
 	TopFileChurn int
 	Bars []HourBar
 	BlurbLines []string
+	CardHeight int
 }
 
 type HourBar struct {
@@ -370,6 +371,11 @@ func main() {
 	blurb := personalityWriter(number,busiestHour,busiestDay,longestStreak,name,churn)
 	blurbLines := wrapText(blurb,45)
 	
+	baseHeight := 435
+	lineHeight := 18
+	blurbHeight := len(blurbLines)*lineHeight + 30
+	totalHeight := baseHeight + blurbHeight
+
 	data := cardData {
 		TotalCommits: number,
 		BusiestHour: busiestHour,
@@ -379,6 +385,7 @@ func main() {
 		TopFileChurn: churn,
 		Bars: bars,
 		BlurbLines: blurbLines,
+		CardHeight: totalHeight,
 	}
 
 	funcMap := template.FuncMap{
