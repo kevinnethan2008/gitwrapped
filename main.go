@@ -15,8 +15,8 @@ import (
 	"io"
 )
 
-const svgTemplate = `<svg width="400" height="520" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
-  <rect width="400" height="520" fill="#1a1a2e" rx="12"/>
+const svgTemplate = `<svg width="400" height="{{.CardHeight}}" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="400" height="{{.CardHeight}}" fill="#1a1a2e" rx="12"/>
 
   <text x="20" y="30" font-size="20" fill="white">Your Git Wrapped</text>
   <rect x="20" y="38" width="60" height="3" fill="#e94560" rx="1.5"/>
@@ -44,7 +44,6 @@ const svgTemplate = `<svg width="400" height="520" xmlns="http://www.w3.org/2000
     {{end}}
   </text>
 </svg>`
-
 
 type Commit struct {
 	Hash string

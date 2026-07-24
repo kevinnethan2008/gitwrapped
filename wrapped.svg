@@ -1,5 +1,5 @@
-<svg width="400" height="520" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
-  <rect width="400" height="520" fill="#1a1a2e" rx="12"/>
+<svg width="400" height="681" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="400" height="681" fill="#1a1a2e" rx="12"/>
 
   <text x="20" y="30" font-size="20" fill="white">Your Git Wrapped</text>
   <rect x="20" y="38" width="60" height="3" fill="#e94560" rx="1.5"/>
@@ -49,7 +49,7 @@
   <rect x="185" y="250" width="10" height="0" fill="#e94560"/>
   
   
-  <rect x="200" y="217" width="10" height="33" fill="#e94560"/>
+  <rect x="200" y="225" width="10" height="25" fill="#e94560"/>
   
   <text x="200" y="265" font-size="9" fill="#666">12</text>
   
@@ -57,7 +57,7 @@
   <rect x="215" y="250" width="10" height="0" fill="#e94560"/>
   
   
-  <rect x="230" y="184" width="10" height="66" fill="#e94560"/>
+  <rect x="230" y="200" width="10" height="50" fill="#e94560"/>
   
   
   <rect x="245" y="250" width="10" height="0" fill="#e94560"/>
@@ -65,18 +65,18 @@
   <text x="245" y="265" font-size="9" fill="#666">15</text>
   
   
-  <rect x="260" y="217" width="10" height="33" fill="#e94560"/>
+  <rect x="260" y="225" width="10" height="25" fill="#e94560"/>
   
   
   <rect x="275" y="150" width="10" height="100" fill="#e94560"/>
   
   
-  <rect x="290" y="217" width="10" height="33" fill="#e94560"/>
+  <rect x="290" y="225" width="10" height="25" fill="#e94560"/>
   
   <text x="290" y="265" font-size="9" fill="#666">18</text>
   
   
-  <rect x="305" y="217" width="10" height="33" fill="#e94560"/>
+  <rect x="305" y="225" width="10" height="25" fill="#e94560"/>
   
   
   <rect x="320" y="250" width="10" height="0" fill="#e94560"/>
@@ -96,37 +96,39 @@
 
   <line x1="20" y1="250" x2="380" y2="250" stroke="#444" stroke-width="1"/>
 
-  <text x="20" y="290" font-size="14" fill="#888">Total commits: <tspan fill="#e94560" font-weight="bold">9</tspan></text>
+  <text x="20" y="290" font-size="14" fill="#888">Total commits: <tspan fill="#e94560" font-weight="bold">10</tspan></text>
   <text x="20" y="315" font-size="14" fill="#888">Busiest hour: <tspan fill="#e94560" font-weight="bold">17:00</tspan></text>
   <text x="20" y="340" font-size="14" fill="#888">Busiest day: <tspan fill="#e94560" font-weight="bold">Thursday</tspan></text>
   <text x="20" y="365" font-size="14" fill="#888">Longest streak: <tspan fill="#e94560" font-weight="bold">3</tspan> days</text>
-  <text x="20" y="390" font-size="14" fill="#888">Most-changed file: <tspan fill="#e94560" font-weight="bold">main.go</tspan> (471 lines)</text>
+  <text x="20" y="390" font-size="14" fill="#888">Most-changed file: <tspan fill="#e94560" font-weight="bold">main.go</tspan> (478 lines)</text>
 
   <line x1="20" y1="410" x2="380" y2="410" stroke="#444" stroke-width="1"/>
 
   <text x="20" y="435" font-size="13" fill="#ccc">
     
-    <tspan x="20" dy="0">You are the ultimate Thursday twilight</tspan>
+    <tspan x="20" dy="0">You are the undisputed master of the</tspan>
     
-    <tspan x="20" dy="18">warrior, peaking at 5:00 PM with the</tspan>
+    <tspan x="20" dy="18">"Thursday 5:00 PM panic," channeling a</tspan>
     
-    <tspan x="20" dy="18">relatable energy of someone trying to push a</tspan>
+    <tspan x="20" dy="18">hyper-focused, three-day sprint of</tspan>
     
-    <tspan x="20" dy="18">feature just in time for happy hour. With a</tspan>
+    <tspan x="20" dy="18">inspiration just as the weekend comes into</tspan>
     
-    <tspan x="20" dy="18">brief three-day streak and a proudly bloated</tspan>
+    <tspan x="20" dy="18">view. Clearly a pragmatist who scorns the</tspan>
     
-    <tspan x="20" dy="18">471-line `main.go`, you clearly believe that</tspan>
+    <tspan x="20" dy="18">complexity of modular architecture, you’ve</tspan>
     
-    <tspan x="20" dy="18">"separation of concerns" is a problem for</tspan>
+    <tspan x="20" dy="18">lovingly poured all 478 lines of your soul</tspan>
     
-    <tspan x="20" dy="18">future-you to worry about. You may only have</tspan>
+    <tspan x="20" dy="18">directly into a single, monolithic `main.go`.</tspan>
     
-    <tspan x="20" dy="18">nine commits to your name, but you’ve</tspan>
+    <tspan x="20" dy="18">We absolutely love a developer who knows how</tspan>
     
-    <tspan x="20" dy="18">packed enough single-file ambition into them</tspan>
+    <tspan x="20" dy="18">to pack maximum impact into ten precise</tspan>
     
-    <tspan x="20" dy="18">to make any Go compiler sweat.</tspan>
+    <tspan x="20" dy="18">commits, ensuring Friday remains a sacred,</tspan>
+    
+    <tspan x="20" dy="18">stress-free zone.</tspan>
     
   </text>
 </svg>
