@@ -1,134 +1,136 @@
-<svg width="400" height="681" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
-  <rect width="400" height="681" fill="#1a1a2e" rx="12"/>
+<svg width="400" height="699" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="400" height="699" fill="#1a1a2e" rx="12"/>
 
   <text x="20" y="30" font-size="20" fill="white">Your Git Wrapped</text>
   <rect x="20" y="38" width="60" height="3" fill="#e94560" rx="1.5"/>
 
   
-  <rect x="20" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="20" y="235" width="10" height="15" fill="#e94560"/>
   
   <text x="20" y="265" font-size="9" fill="#666">0</text>
   
   
-  <rect x="35" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="35" y="244" width="10" height="6" fill="#e94560"/>
   
   
-  <rect x="50" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="50" y="244" width="10" height="6" fill="#e94560"/>
   
   
-  <rect x="65" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="65" y="247" width="10" height="3" fill="#e94560"/>
   
   <text x="65" y="265" font-size="9" fill="#666">3</text>
   
   
-  <rect x="80" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="80" y="249" width="10" height="1" fill="#e94560"/>
   
   
-  <rect x="95" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="95" y="249" width="10" height="1" fill="#e94560"/>
   
   
-  <rect x="110" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="110" y="249" width="10" height="1" fill="#e94560"/>
   
   <text x="110" y="265" font-size="9" fill="#666">6</text>
   
   
-  <rect x="125" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="125" y="247" width="10" height="3" fill="#e94560"/>
   
   
-  <rect x="140" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="140" y="242" width="10" height="8" fill="#e94560"/>
   
   
-  <rect x="155" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="155" y="228" width="10" height="22" fill="#e94560"/>
   
   <text x="155" y="265" font-size="9" fill="#666">9</text>
   
   
-  <rect x="170" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="170" y="214" width="10" height="36" fill="#e94560"/>
   
   
-  <rect x="185" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="185" y="199" width="10" height="51" fill="#e94560"/>
   
   
-  <rect x="200" y="225" width="10" height="25" fill="#e94560"/>
+  <rect x="200" y="177" width="10" height="73" fill="#e94560"/>
   
   <text x="200" y="265" font-size="9" fill="#666">12</text>
   
   
-  <rect x="215" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="215" y="176" width="10" height="74" fill="#e94560"/>
   
   
-  <rect x="230" y="200" width="10" height="50" fill="#e94560"/>
+  <rect x="230" y="171" width="10" height="79" fill="#e94560"/>
   
   
-  <rect x="245" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="245" y="151" width="10" height="99" fill="#e94560"/>
   
   <text x="245" y="265" font-size="9" fill="#666">15</text>
   
   
-  <rect x="260" y="225" width="10" height="25" fill="#e94560"/>
+  <rect x="260" y="150" width="10" height="100" fill="#e94560"/>
   
   
-  <rect x="275" y="150" width="10" height="100" fill="#e94560"/>
+  <rect x="275" y="151" width="10" height="99" fill="#e94560"/>
   
   
-  <rect x="290" y="225" width="10" height="25" fill="#e94560"/>
+  <rect x="290" y="178" width="10" height="72" fill="#e94560"/>
   
   <text x="290" y="265" font-size="9" fill="#666">18</text>
   
   
-  <rect x="305" y="225" width="10" height="25" fill="#e94560"/>
+  <rect x="305" y="201" width="10" height="49" fill="#e94560"/>
   
   
-  <rect x="320" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="320" y="218" width="10" height="32" fill="#e94560"/>
   
   
-  <rect x="335" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="335" y="226" width="10" height="24" fill="#e94560"/>
   
   <text x="335" y="265" font-size="9" fill="#666">21</text>
   
   
-  <rect x="350" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="350" y="231" width="10" height="19" fill="#e94560"/>
   
   
-  <rect x="365" y="250" width="10" height="0" fill="#e94560"/>
+  <rect x="365" y="233" width="10" height="17" fill="#e94560"/>
   
   
 
   <line x1="20" y1="250" x2="380" y2="250" stroke="#444" stroke-width="1"/>
 
-  <text x="20" y="290" font-size="14" fill="#888">Total commits: <tspan fill="#e94560" font-weight="bold">10</tspan></text>
-  <text x="20" y="315" font-size="14" fill="#888">Busiest hour: <tspan fill="#e94560" font-weight="bold">17:00</tspan></text>
-  <text x="20" y="340" font-size="14" fill="#888">Busiest day: <tspan fill="#e94560" font-weight="bold">Thursday</tspan></text>
-  <text x="20" y="365" font-size="14" fill="#888">Longest streak: <tspan fill="#e94560" font-weight="bold">3</tspan> days</text>
-  <text x="20" y="390" font-size="14" fill="#888">Most-changed file: <tspan fill="#e94560" font-weight="bold">main.go</tspan> (478 lines)</text>
+  <text x="20" y="290" font-size="14" fill="#888">Total commits: <tspan fill="#e94560" font-weight="bold">2995</tspan></text>
+  <text x="20" y="315" font-size="14" fill="#888">Busiest hour: <tspan fill="#e94560" font-weight="bold">16:00</tspan></text>
+  <text x="20" y="340" font-size="14" fill="#888">Busiest day: <tspan fill="#e94560" font-weight="bold">Tuesday</tspan></text>
+  <text x="20" y="365" font-size="14" fill="#888">Longest streak: <tspan fill="#e94560" font-weight="bold">13</tspan> days</text>
+  <text x="20" y="390" font-size="14" fill="#888">Most-changed file: <tspan fill="#e94560" font-weight="bold">assets/js/build/rop.js</tspan> (481000 lines)</text>
 
   <line x1="20" y1="410" x2="380" y2="410" stroke="#444" stroke-width="1"/>
 
   <text x="20" y="435" font-size="13" fill="#ccc">
     
-    <tspan x="20" dy="0">You are the undisputed master of the</tspan>
+    <tspan x="20" dy="0">You are a late-afternoon powerhouse who</tspan>
     
-    <tspan x="20" dy="18">"Thursday 5:00 PM panic," channeling a</tspan>
+    <tspan x="20" dy="18">thrives on "Tuesday energy," fueled by a mix</tspan>
     
-    <tspan x="20" dy="18">hyper-focused, three-day sprint of</tspan>
+    <tspan x="20" dy="18">of pre-end-of-day momentum and the sheer</tspan>
     
-    <tspan x="20" dy="18">inspiration just as the weekend comes into</tspan>
+    <tspan x="20" dy="18">stamina to pull off a heroic 13-day coding</tspan>
     
-    <tspan x="20" dy="18">view. Clearly a pragmatist who scorns the</tspan>
+    <tspan x="20" dy="18">streak. While your dedication is undeniably</tspan>
     
-    <tspan x="20" dy="18">complexity of modular architecture, you’ve</tspan>
+    <tspan x="20" dy="18">impressive, your relationship with</tspan>
     
-    <tspan x="20" dy="18">lovingly poured all 478 lines of your soul</tspan>
+    <tspan x="20" dy="18">`assets/js/build/rop.js` looks less like</tspan>
     
-    <tspan x="20" dy="18">directly into a single, monolithic `main.go`.</tspan>
+    <tspan x="20" dy="18">version control and more like a toxic</tspan>
     
-    <tspan x="20" dy="18">We absolutely love a developer who knows how</tspan>
+    <tspan x="20" dy="18">codependency involving 481,000 lines of built</tspan>
     
-    <tspan x="20" dy="18">to pack maximum impact into ten precise</tspan>
+    <tspan x="20" dy="18">assets. We absolutely love your relentless</tspan>
     
-    <tspan x="20" dy="18">commits, ensuring Friday remains a sacred,</tspan>
+    <tspan x="20" dy="18">work ethic, but we also desperately want to</tspan>
     
-    <tspan x="20" dy="18">stress-free zone.</tspan>
+    <tspan x="20" dy="18">buy you a coffee and gently introduce you to</tspan>
+    
+    <tspan x="20" dy="18">`.gitignore`.</tspan>
     
   </text>
 </svg>

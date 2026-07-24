@@ -294,7 +294,7 @@ func personalityWriter(commits, busiestHour int,busiestDay string,longestStreak 
 
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{Timeout: 15 * time.Second}
+	client := &http.Client{Timeout: 100 * time.Second}
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("API call error:", err)
@@ -349,8 +349,13 @@ func wrapText(text string, maxCharsPerLine int) []string {
 
 func main() {
 
-	cmd := exec.Command("git", "log", "--pretty=format:%H|%an|%ad|%s")
 
+	repoPath := "."
+	if len(os.Args) > 1  {
+		repoPath = os.Args[1]
+	}
+	cmd := exec.Command("git", "log", "--pretty=format:%H|%an|%ad|%s")
+	cmd.Dir = repoPath
 	output, err := cmd.Output()
 	if err != nil {
 	fmt.Println("Error running git log:",err)
@@ -360,6 +365,7 @@ func main() {
 	longestStreak,busiestHour,busiestDay,bars := bucket(logger(string(output)))
 
 	cmd1 := exec.Command("git", "log", "--numstat", "--pretty=format:COMMIT:%H")
+	cmd1.Dir = repoPath
 	output1, err1 := cmd1.Output()
 	if err1 != nil {
 	fmt.Println("Error running numstat")
