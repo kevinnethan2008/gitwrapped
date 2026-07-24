@@ -9,10 +9,14 @@ import (
 	"strconv"
 	"text/template"
 	"os"
+	"bytes"
+	"encoding/json"
+	"net/http"
+	"io"
 )
 
-const svgTemplate = `<svg width="400" height="450" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
-  <rect width="400" height="450" fill="#1a1a2e" rx="12"/>
+const svgTemplate = `<svg width="400" height="520" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="400" height="520" fill="#1a1a2e" rx="12"/>
 
   <text x="20" y="30" font-size="20" fill="white">Your Git Wrapped</text>
   <rect x="20" y="38" width="60" height="3" fill="#e94560" rx="1.5"/>
@@ -31,6 +35,14 @@ const svgTemplate = `<svg width="400" height="450" xmlns="http://www.w3.org/2000
   <text x="20" y="340" font-size="14" fill="#888">Busiest day: <tspan fill="#e94560" font-weight="bold">{{.BusiestDay}}</tspan></text>
   <text x="20" y="365" font-size="14" fill="#888">Longest streak: <tspan fill="#e94560" font-weight="bold">{{.LongestStreak}}</tspan> days</text>
   <text x="20" y="390" font-size="14" fill="#888">Most-changed file: <tspan fill="#e94560" font-weight="bold">{{.TopFile}}</tspan> ({{.TopFileChurn}} lines)</text>
+
+  <line x1="20" y1="410" x2="380" y2="410" stroke="#444" stroke-width="1"/>
+
+  <text x="20" y="435" font-size="13" fill="#ccc">
+    {{range $i, $line := .BlurbLines}}
+    <tspan x="20" dy="{{if eq $i 0}}0{{else}}18{{end}}">{{$line}}</tspan>
+    {{end}}
+  </text>
 </svg>`
 
 
@@ -55,6 +67,7 @@ type cardData struct {
 	TopFile string
 	TopFileChurn int
 	Bars []HourBar
+	BlurbLines []string
 }
 
 type HourBar struct {
@@ -62,6 +75,28 @@ type HourBar struct {
 	Count int
 	Height int
 	X int
+}
+
+type geminiRequest struct {
+	Contents []geminiContent `json:"contents"`
+}
+
+type geminiContent struct {
+	Parts []geminiParts `json:"parts"`
+}
+
+type geminiParts struct {
+	Text string `json:"text"`
+}
+
+type geminiResponse struct {
+	Candidates []struct {
+		Content struct {
+			Parts []struct {
+				Text string `json:"text"`
+			} `json:"parts"`
+		} `json:"content"`
+	} `json:"candidates"`
 }
 
 
@@ -227,6 +262,91 @@ var stats []fileStats
 	return stats[0].name, stats[0].churn
 }
 
+func personalityWriter(commits, busiestHour int,busiestDay string,longestStreak int,topFile string,topFileChurn int) string {
+	apiKey := os.Getenv("GEMINI_API_KEY")
+	if apiKey == "" {
+	fmt.Println("GEMINI_API_KEY NOT SET")
+	return""
+	}
+	
+	prompt := fmt.Sprintf("You are a witty developer personality analyst. Based on these git stats, write a short (2-3 sentence), playful but affectionate personality profile of this developer. Total commi	ts: %d. Busiest coding hour: %d:00. Busiest day: %s. Longest commit streak: %d days. Most-changed file: %s (%d lines changed).",commits,busiestHour,busiestDay,longestStreak,topFile,topFileChurn,)
+
+	reqBody := geminiRequest{
+		Contents: []geminiContent{
+			{Parts: []geminiParts{{Text: prompt}}},
+		},
+	}
+	
+	
+	jsonBody, err := json.Marshal(reqBody)
+	if err != nil {
+	fmt.Println("Marshal error:",err)
+	return ""
+	}
+
+	url := "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=" + apiKey
+
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonBody))
+	if err != nil {
+		fmt.Println("Request Build Error:",err)
+		return ""
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{Timeout: 15 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("API call error:", err)
+		return ""
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Read error",err)
+		return ""
+	}
+
+	var geminiResp geminiResponse
+	err = json.Unmarshal(body, &geminiResp)
+	if err != nil {
+		fmt.Println("Unmarshal error:", err)
+		return ""
+	}
+	
+	blurb := "Not enough data to judge you yet"
+	if len(geminiResp.Candidates) > 0 && len(geminiResp.Candidates[0].Content.Parts) > 0 {
+		blurb = geminiResp.Candidates[0].Content.Parts[0].Text
+	}
+	return blurb
+
+}
+
+func wrapText(text string, maxCharsPerLine int) []string {
+	words := strings.Fields(text)
+	var lines []string
+	var currentLine string
+
+	for _, word := range words {
+		if currentLine == "" {
+			currentLine = word
+		} else if len(currentLine)+1+len(word) <= maxCharsPerLine {
+			currentLine += " " + word
+		} else {
+			lines = append(lines,currentLine)
+			currentLine = word
+		}
+	}
+
+	if currentLine != "" {
+		lines = append(lines,currentLine)
+	}
+
+	return lines
+
+}
+
 func main() {
 
 	cmd := exec.Command("git", "log", "--pretty=format:%H|%an|%ad|%s")
@@ -246,15 +366,19 @@ func main() {
 	return
 	}
 	name, churn := churn(string(output1))
+	number := len(logger(string(output)))
+	blurb := personalityWriter(number,busiestHour,busiestDay,longestStreak,name,churn)
+	blurbLines := wrapText(blurb,45)
 	
 	data := cardData {
-		TotalCommits: len(logger(string(output))),
+		TotalCommits: number,
 		BusiestHour: busiestHour,
 		BusiestDay: busiestDay,
 		LongestStreak: longestStreak,
 		TopFile: name,
 		TopFileChurn: churn,
 		Bars: bars,
+		BlurbLines: blurbLines,
 	}
 
 	funcMap := template.FuncMap{
@@ -282,6 +406,7 @@ func main() {
 	}
 
 	fmt.Println("Wrote wrapped.svg")
+
 
 
 }
