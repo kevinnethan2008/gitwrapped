@@ -45,7 +45,7 @@ const svgTemplate = `<svg width="400" height="{{.CardHeight}}" xmlns="http://www
   </text>
 </svg>`
 
-type Commit struct {
+type Commit struct {	
 	Hash string
 	Author string
 	Date time.Time
