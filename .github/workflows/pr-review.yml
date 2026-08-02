@@ -11,7 +11,7 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - uses: kevinnethan2008/pr-sensei@main
+      - uses: kevinnethan2008/PR-SENSEI@main
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
