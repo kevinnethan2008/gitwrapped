@@ -70,7 +70,7 @@ type cardData struct {
 	CardHeight int
 }
 
-type HourBar struct {
+type hourBar struct {
 	Hour int
 	Count int
 	Height int
