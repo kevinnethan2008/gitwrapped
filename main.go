@@ -409,7 +409,7 @@ func main() {
 	fmt.Println("File error", err)
 	return
 	}
-	defer file.Close()
+	
 
 	err = tmpl.Execute(file, data)
 	if err != nil {
